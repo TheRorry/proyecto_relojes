@@ -1,0 +1,58 @@
+/* resources/css/estilos.css */
+
+body {
+    background-color: #F4F4F4 !important;
+}
+
+header {
+    background-color: #1A2238 !important; /* Azul Medianoche */
+    padding: 20px 0 0 0; /* Espaciado arriba */
+    border-bottom: 3px solid #C19A6B; /* Línea Dorado Champán */
+
+    margin-bottom: 40px;
+}
+
+
+.nombre-empresa {
+    color: #C19A6B !important; /* Dorado Champán */
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* Ajuste para que la navbar sea del mismo azul que el header */
+.navbar {
+    background-color: #1A2238 !important; 
+    padding-bottom: 10px;
+}
+
+/* Estilo para los links de la navegación */
+.nav-link {
+    color: #F4F4F4 !important; /* Blanco Hueso */
+}
+
+.nav-link:hover, .nav-link.active {
+    color: #C19A6B !important; /* Dorado al pasar el mouse o estar activo */
+}
+
+/* Estilos para el Footer Imperial */
+.footer-imperial {
+    background-color: #1A2238 !important; /* Azul Medianoche */
+    color: #F4F4F4; /* Blanco Hueso */
+    border-top: 4px solid #C19A6B; /* Línea Dorada */
+}
+
+.texto-dorado {
+    color: #C19A6B !important; /* Dorado Champán */
+}
+
+.link-footer {
+    color: #F4F4F4;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.link-footer:hover {
+    color: #C19A6B;
+    padding-left: 5px; /* Efecto sutil al pasar el mouse */
+}
