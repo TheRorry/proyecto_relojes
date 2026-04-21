@@ -17,8 +17,10 @@ return view('comercializacion');
 
 Route::get('/consultas', function () { 
 return view('consultas'); 
-}); 
-/////////////
+});
+Route::get('/consultas', [ContactoController::class, 'consultas'])->name('consultas'); 
+
+
 Route::get('/informacion', function () { 
 return view('informacion'); 
 }); 
@@ -27,7 +29,7 @@ Route::post('/informacion', [ContactoController::class, 'procesar']);
 Route::get('/exito', function () {
 return view('exito');
 });
-////////////////
+
 Route::get('/quienes-somos', function () { 
 return view('quienes_somos'); 
 }); 
