@@ -25,6 +25,7 @@
                 <div class="mb-4">
                     <p class="mb-1 texto-dorado fw-bold">Domicilio Legal:</p>
                     <p class="text-white">Av. 3 de Abril 1234, Corrientes, Argentina</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d14159.029137278436!2d-58.82546323704834!3d-27.476814714063856!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1ses!2sar!4v1776899565027!5m2!1ses!2sar" width="450" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
 
                 <hr class="border-secondary">
