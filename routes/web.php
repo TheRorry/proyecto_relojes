@@ -15,11 +15,11 @@ Route::get('/comercializacion', function () {
 return view('comercializacion'); 
 });
 
-Route::get('/consultas', function () { 
-return view('consultas'); 
-});
+// Muestra el formulario
 Route::get('/consultas', [ContactoController::class, 'consultas'])->name('consultas'); 
 
+// Procesa el formulario (Cambiamos /informacion por /consultas)
+Route::post('/consultas', [ContactoController::class, 'procesar'])->name('consultas.enviar'); 
 
 Route::get('/informacion', function () { 
 return view('informacion'); 

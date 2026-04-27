@@ -12,7 +12,7 @@
                 <div class="card-body p-4 ">
                     <p class="text-white text-center mb-4">Completá el formulario y nos pondremos en contacto a la brevedad.</p>
                     
-                    <form action="#" method="POST">
+                    <form action="{{ route('consultas.enviar') }}" method="POST">
                         @csrf <div class="mb-3 text-white">
                             <label for="nombre" class="form-label fw-bold">Nombre Completo</label>
                             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Pérez">

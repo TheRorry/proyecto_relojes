@@ -8,6 +8,9 @@
             Hola <strong>{{ $nombre }}</strong>, qué bueno recibir tu mensaje.
         </p>
         <p>
+            Tu consulta sobre <strong class="texto-dorado">{{ $asunto }}</strong> ha sido recibida.
+        </p>
+        <p>
             Un miembro del equipo de ventas se pondrá en contacto con vos al correo: 
             <strong class="texto-dorado">{{ $email }}</strong>
         </p>

@@ -14,28 +14,38 @@
     </div>
 
     <div class="row g-4 py-5">
-        <div class="col-md-4 text-center">
-            <div class="p-4 h-100 shadow-sm border rounded bg-white">
+    <div class="col-md-4 text-center">
+        <a href="{{ url('/quienes-somos') }}" class="text-decoration-none">
+            <div class="p-4 h-100 shadow-sm border rounded bg-white tarjeta-link">
                 <i class="bi bi-clock-history texto-dorado fs-1 mb-3 d-block"></i>
-                <h3 class="texto-dorado">Piezas de Colección</h3>
-                <p class="text-muted">Acceso exclusivo a modelos de edición limitada de las casas más prestigiosas: Rolex, AP y Patek Philippe.</p>
+                <h3 class="texto-dorado">Nuestra Historia</h3>
+                <p class="text-muted">Descubrí el origen de Imperial Relojería y nuestro compromiso con la excelencia a través del tiempo.</p>
             </div>
-        </div>
-        
-        <div class="col-md-4 text-center">
-            <div class="p-4 h-100 shadow-sm border rounded bg-white">
-                <i class="bi bi-tools texto-dorado fs-1 mb-3 d-block"></i>
-                <h3 class="texto-dorado">Servicio Técnico</h3>
-                <p class="text-muted">Mantenimiento especializado y restauración de mecanismos mecánicos con repuestos originales certificados.</p>
+        </a>
+    </div>
+    
+    <div class="col-md-4 text-center">
+        <a href="{{ url('/comercializacion') }}" class="text-decoration-none">
+            <div class="p-4 h-100 shadow-sm border rounded bg-white tarjeta-link">
+                <i class="bi bi-cash-stack texto-dorado fs-1 mb-3 d-block"></i>
+                <h3 class="texto-dorado">Gestión Comercial</h3>
+                <p class="text-muted">Detalles sobre métodos de pago, envíos nacionales y políticas de seguridad para una compra de excelencia.</p>
             </div>
-        </div>
+        </a>
+    </div>
 
-        <div class="col-md-4 text-center">
-            <div class="p-4 h-100 shadow-sm border rounded bg-white">
-                <i class="bi bi-shield-check texto-dorado fs-1 mb-3 d-block"></i>
-                <h3 class="texto-dorado">Tasación Oficial</h3>
-                <p class="text-muted">Certificamos la autenticidad y el valor de mercado de sus piezas para seguros o transacciones privadas.</p>
+    <div class="col-md-4 text-center">
+        <a href="{{ url('/informacion') }}" class="text-decoration-none">
+            <div class="p-4 h-100 shadow-sm border rounded bg-white tarjeta-link">
+                <i class="bi bi-info-circle texto-dorado fs-1 mb-3 d-block"></i>
+                <h3 class="texto-dorado">Información de Contacto</h3>
+                <p class="text-muted">Estamos para asesorarte. Conocé la ubicación de nuestro showroom y canales directos de comunicación.</p>
             </div>
-        </div>
+        </a>
+    </div>
+</div>
     </div>
 @endsection
+
+
+
