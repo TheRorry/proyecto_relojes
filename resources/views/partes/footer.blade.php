@@ -33,22 +33,32 @@
 
     <div class="col-md-5 col-lg-4 text-center text-md-end">
         <ul class="list-unstyled list-inline mb-0">
-            <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-instagram"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-facebook"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-twitter-x"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-youtube"></i></a>
-            </li>
-            <li class="list-inline-item">
-                <a href="#" class="btn-floating btn-sm text-white" style="font-size: 23px;"><i class="bi bi-tiktok"></i></a>
-            </li>
-        </ul>
+    <li class="list-inline-item">
+        <a href="https://www.instagram.com/" class="btn-floating btn-sm text-white" style="font-size: 23px;" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-instagram"></i>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="https://www.facebook.com/" class="btn-floating btn-sm text-white" style="font-size: 23px;" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-facebook"></i>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="https://x.com/" class="btn-floating btn-sm text-white" style="font-size: 23px;" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-twitter-x"></i>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="https://www.youtube.com/" class="btn-floating btn-sm text-white" style="font-size: 23px;" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-youtube"></i>
+        </a>
+    </li>
+    <li class="list-inline-item">
+        <a href="https://www.tiktok.com/" class="btn-floating btn-sm text-white" style="font-size: 23px;" target="_blank" rel="noopener noreferrer">
+            <i class="bi bi-tiktok"></i>
+        </a>
+    </li>
+</ul>
     </div>
 </div>
     </div>
