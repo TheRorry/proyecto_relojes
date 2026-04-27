@@ -15,17 +15,17 @@
                     <form action="{{ route('consultas.enviar') }}" method="POST">
                         @csrf <div class="mb-3 text-white">
                             <label for="nombre" class="form-label fw-bold">Nombre Completo</label>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Pérez">
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ej: Juan Pérez" required>
                         </div>
 
                         <div class="mb-3 text-white">
                             <label for="email" class="form-label fw-bold">Correo Electrónico</label>
-                            <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required>
                         </div>
 
                         <div class="mb-3 text-white">
                             <label for="asunto" class="form-label fw-bold">Asunto</label>
-                            <select class="form-control" id="asunto" name="asunto">
+                            <select class="form-control" id="asunto" name="asunto" required>
                                 <option value="">Seleccioná una opción</option>
                                 <option value="ventas">Ventas</option>
                                 <option value="servicio">Servicio Técnico</option>
@@ -36,7 +36,7 @@
 
                         <div class="mb-3 text-white">
                             <label for="mensaje" class="form-label fw-bold">Mensaje</label>
-                            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribí tu consulta aquí..."></textarea>
+                            <textarea class="form-control" id="mensaje" name="mensaje" rows="4" placeholder="Escribí tu consulta aquí..." required></textarea>
                         </div>
 
                         <div class="d-grid pt-2">
