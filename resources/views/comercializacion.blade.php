@@ -45,18 +45,61 @@
         </div>
     </div>
 
-    <div class="mt-5 p-5 rounded-3 shadow-lg border" style="background-color: #1A2238; border-color: #C19A6B !important;">
-        <h3 class="text-white mb-4"><i class="bi bi-info-circle me-2"></i> Información para tu tranquilidad</h3>
-        <div class="row">
-            <div class="col-md-6 text-white-50">
-                <h5 class="text-white">Garantía</h5>
-                <p></p>
+    <div class="mt-5 p-5 rounded-4 shadow-lg border position-relative"
+     style="background: linear-gradient(135deg, #1A2238, #111827); border: 1px solid #C19A6B;">
+
+    <h3 class="text-white mb-4 d-flex align-items-center gap-2"
+        style="font-weight: 600; letter-spacing: 1px;">
+        <i class="bi bi-shield-check" style="color: #C19A6B; font-size: 1.8rem;"></i>
+        Compra con confianza
+    </h3>
+
+    <div class="row">
+        <div class="col-md-6 text-white-50">
+            <div class="mb-4">
+                <h5 class="text-white d-flex align-items-center gap-2">
+                    <i class="bi bi-award" style="color: #C19A6B;"></i>
+                    Garantía
+                </h5>
+                <p class="mb-0">
+                    Todos nuestros relojes cuentan con una garantía de 6 meses ante fallas de fábrica,
+                    asegurando una compra segura y respaldada.
+                </p>
             </div>
-            <div class="col-md-6 text-white-50">
-                <h5 class="text-white">Autenticidad</h5>
-                <p></p>
+
+            <div>
+                <h5 class="text-white d-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-repeat" style="color: #C19A6B;"></i>
+                    Cambios y devoluciones
+                </h5>
+                <p class="mb-0">
+                    Podés solicitar cambios dentro de los 7 días posteriores a la compra en caso de inconvenientes.
+                </p>
+            </div>
+        </div>
+
+        <div class="col-md-6 text-white-50">
+            <div class="mb-4">
+                <h5 class="text-white d-flex align-items-center gap-2">
+                    <i class="bi bi-patch-check" style="color: #C19A6B;"></i>
+                    Autenticidad
+                </h5>
+                <p class="mb-0">
+                    Trabajamos únicamente con productos originales, verificados antes de su entrega para garantizar calidad.
+                </p>
+            </div>
+
+            <div>
+                <h5 class="text-white d-flex align-items-center gap-2">
+                    <i class="bi bi-truck" style="color: #C19A6B;"></i>
+                    Envíos seguros
+                </h5>
+                <p class="mb-0">
+                    Todos los envíos son embalados cuidadosamente y cuentan con seguimiento para tu tranquilidad.
+                </p>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
