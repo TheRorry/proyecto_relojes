@@ -13,26 +13,31 @@
 
     <div class="row g-4">
         <div class="col-12 mb-4">
-            <div class="card-esencia p-0 overflow-hidden border-magenta" style="background: #121212;">
+            <div class="card-esencia p-0 overflow-hidden border-magenta" style="background: #E8DFD1;">
                 <div class="row g-0 align-items-center">
-                    <div class="col-md-4 bg-black text-center p-4">
-                        <img src="{{ asset('img/patek_philippe_nautilius.png') }}" class="img-fluid img-catalog" style="max-height: 300px;" alt="Master Edition">
-                    </div>
+                    <div class="col-md-4 text-center p-4">
+                        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; display: inline-block;">
+                         <img src="{{ asset('img/patek_philippe_nautilius.png') }}" 
+                         class="img-fluid img-catalog" 
+                         style="max-height: 260px;">
+                        </div>
+                        </div>
+
                     <div class="col-md-8">
                         <div class="p-4">
                             <div class="d-flex justify-content-between align-items-start mb-2">
                                 <div>
-                                    <h3 class="hansip-font h2 text-white mb-0">PATEK PHILIPPE <span class="text-white">NAUTILIUS</span></h3>
+                                    <h3 class="hansip-font h2 text-black mb-0">PATEK PHILIPPE <span class="text-balck">NAUTILIUS</span></h3>
                                 </div>
-                                <span class="text-white h3 hansip-font">$450.000</span>
+                                <span class="text-black h3 hansip-font">$450.000</span>
                             </div>
-                            <p class="text-white fs-5 mb-4">
+                            <p class="text-black fs-5 mb-4">
                                 Ingeniería de precisión suiza envuelta en titanio grado 5. El estandarte de nuestra casa para el coleccionista moderno. Presenta un cristal de zafiro irrompible y un movimiento mecánico de 40 rubíes visible a través del fondo de caja
                             </p>
                             <div class="d-flex gap-3 mb-4">
-                                <div class="text-white px-3 py-2">MOV. AUTOMÁTICO</div>
-                                <div class="text-white px-3 py-2">TITANIO G5</div>
-                                <div class="text-white px-3 py-2">10 ATM</div>
+                                <div class="text-black px-3 py-2">MOV. AUTOMÁTICO</div>
+                                <div class="text-black px-3 py-2">TITANIO G5</div>
+                                <div class="text-black px-3 py-2">10 ATM</div>
                             </div>
                             <button onclick="mensajeProximamente()" class="btn-stanley-legend px-5 py-3 btn-glitch">ADQUIRIR PIEZA</button>
                         </div>
@@ -53,7 +58,7 @@
                 <div class="p-4 border-top border-secondary bg-dark-gradient">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <h3 class="hansip-font h5 text-black mb-0">Rolex GMT-Master Verde</h3>
-                        <span class="text-white fw-bold">$120.000</span>
+                        <span class="text-black fw-bold">$120.000</span>
                     </div>
                     <p class="text-secondary small mb-3">Una pieza que redefine el concepto de 'reloj de herramientas'. Su bisel cerámico bicolor y la esfera verde bosque contrastan con un brazalete Oyster de acero quirúrgico, diseñado para resistir las condiciones más extremas sin perder la elegancia.</p>
                     <div class="d-flex gap-2 mb-4">

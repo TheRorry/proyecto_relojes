@@ -12,11 +12,12 @@
     
     <link rel="stylesheet" href="{{ asset('css/estilo.css') }}">
 </head>
-<body>
+<body style="background: linear-gradient(to bottom, #F8F4EC, #EFE7DA);">
 
     @include('partes.header')
-
-    <main class="container mt-4">
+    
+    <main class="container mt-4" 
+      style="background-color: #E8DFD1 !important; min-height: 100vh;">
         @yield('contenido')
     </main>
 
