@@ -16,8 +16,7 @@
 
     @include('partes.header')
     
-    <main class="container mt-4" 
-      style="background-color: #E8DFD1 !important; min-height: 100vh;">
+    <main class="container mt-4" >
         @yield('contenido')
     </main>
 
