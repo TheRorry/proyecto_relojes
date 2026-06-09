@@ -37,3 +37,11 @@ return view('quienes_somos');
 Route::get('/terminos-y-usos', function () { 
 return view('terminos_y_usos'); 
 });
+
+Route::get('/registro', function () { 
+return view('registro'); 
+});
+
+Route::get('/iniciar-sesion', function () { 
+return view('iniciar_sesion'); 
+});

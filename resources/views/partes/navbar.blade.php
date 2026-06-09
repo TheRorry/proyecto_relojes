@@ -20,6 +20,12 @@
                 <a class="nav-link {{ request()->is('informacion') ? 'active' : '' }}" href="{{ url('/informacion') }}">Informacion</a>
                 
                 <a class="nav-link {{ request()->is('terminos-y-usos') ? 'active' : '' }}" href="{{ url('/terminos-y-usos') }}">Terminos y usos</a>
+
+            </div>
+                <div class="navbar-nav">
+                <a class="nav-link {{ request()->is('registro') ? 'active' : '' }}" href="{{ url('/registro') }}">Crear Cuenta</a>
+                <a class="nav-link {{ request()->is('iniciar-sesion') ? 'active' : '' }}" href="{{ url('/iniciar-sesion') }}">Iniciar Sesión</a>
+            </div>
             </div>
         </div>
     </div>
