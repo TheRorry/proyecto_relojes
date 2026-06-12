@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('email')->unique();
+            $table->string('password'); // siempre hasheada, nunca en texto plano
+            $table->foreignId('rol_id')
+                ->constrained('roles') // FK hacia tabla roles
+                ->onDelete('restrict'); // impide borrar un rol con usuarios
+            $table->rememberToken(); // token para "Recordarme"
+            $table->timestamps();
             $table->softDeletes();
         });
     }

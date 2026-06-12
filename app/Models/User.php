@@ -2,31 +2,50 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Database\Factories\UserFactory;
-use Illuminate\Database\Eloquent\Attributes\Fillable;
-use Illuminate\Database\Eloquent\Attributes\Hidden;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-#[Fillable(['name', 'email', 'password'])]
-#[Hidden(['password', 'remember_token'])]
 class User extends Authenticatable
 {
-    /** @use HasFactory<UserFactory> */
     use HasFactory, Notifiable;
 
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'role', // <-- Clave para diferenciar 'cliente' de 'admin'
+    ];
+
+    protected $hidden = [
+        'password',
+        'remember_token',
+    ];
+
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Helper para saber si el usuario es Administrador
      */
-    protected function casts(): array
+    public function isAdmin()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->role === 'admin';
+    }
+
+    /**
+     * Relación con el Carrito Activo (Muchos a Muchos con Product)
+     * Apunta a tu tabla intermedia 'carritos'
+     */
+    public function cartProducts()
+    {
+        return $this->belongsToMany(Product::class, 'carritos', 'user_id', 'product_id')
+                    ->withPivot('quantity')
+                    ->withTimestamps();
+    }
+
+    /**
+     * Relación con las Órdenes de Compra realizadas por el cliente
+     */
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'user_id');
     }
 }

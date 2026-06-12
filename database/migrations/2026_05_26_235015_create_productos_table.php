@@ -12,15 +12,16 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('productos', function (Blueprint $table) {
-$table->id();
-$table->string('nombre', 150);
-$table->text('descripcion')->nullable();
-$table->decimal('precio', 10, 2);
-$table->integer('stock')->default(0);
-$table->string('url_imagen')->nullable();
-$table->boolean('activo')->default(true);
-$table->timestamps();
-});
+            $table->id();
+            $table->string('nombre', 150);
+            $table->text('descripcion')->nullable();
+            $table->decimal('precio', 10, 2);
+            $table->integer('stock')->default(0);
+            $table->string('url_imagen')->nullable();
+            $table->boolean('activo')->default(true);
+            $table->timestamps();
+            $table->softDeletes(); // <-- Habilita las bajas lógicas (Soft Deletes)
+        });
 
     }
 
