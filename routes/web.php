@@ -49,3 +49,5 @@ Route::post('/login', [AuthController::class, 'autenticar']);
 Route::middleware(['auth','rol:admin'])->group(function(){
     Route::get('/admin', [AdminController::class, 'dashboard']);
 });
+
+Route::post('/logout', [AuthController::class, 'logout']);
