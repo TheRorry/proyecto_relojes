@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminController;
 
 Route::get('/', function () {
     return view('principal');
@@ -39,10 +41,11 @@ Route::get('/terminos-y-usos', function () {
 return view('terminos_y_usos'); 
 });
 
-Route::get('/registro', function () { 
-return view('registro'); 
-});
+Route::get('/registro', [AuthController::class, 'formularioRegistro']);
 
-Route::get('/iniciar-sesion', function () { 
-return view('iniciar_sesion'); 
+Route::get('/login', [AuthController::class, 'formularioLogin']); 
+Route::post('/login', [AuthController::class, 'autenticar']);
+
+Route::middleware(['auth','rol:admin'])->group(function(){
+    Route::get('/admin', [AdminController::class, 'dashboard']);
 });

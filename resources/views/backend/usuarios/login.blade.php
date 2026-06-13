@@ -10,20 +10,17 @@
 
                 <div class="card-body p-4 ">
                     
-                    <form action="{{ route('consultas.enviar') }}" method="POST">
+                    <form action="{{ url('/login') }}" method="POST">
                         @csrf 
                         
-                        
-
                         <div class="mb-3 text-white">
                             <label for="email" class="form-label fw-bold">Correo Electrónico</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required>
                         </div>
 
-
                         <div class="mb-3 text-white">
-                            <label for="contrasena" class="form-label fw-bold">Contraseña</label>
-                            <input type="password" id="contrasena" name="contrasena" placeholder="********" class="form-control border-secondary" required>
+                            <label for="password" class="form-label fw-bold">Contraseña</label>
+                            <input type="password" id="password" name="password" placeholder="********" class="form-control border-secondary" required>
                         </div>
 
                         <div class="d-grid pt-2">
