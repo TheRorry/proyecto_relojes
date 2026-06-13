@@ -20,7 +20,7 @@
                     </div>
                     <div>
                         <h6 class="text-uppercase text-muted small mb-1" style="color: #A0A5B5 !important;">Usuarios Registrados</h6>
-                        <h2 class="display-6 fw-bold mb-0">2</h2>
+                        <h2 class="display-6 fw-bold mb-0">{{ $totalUsuarios }}</h2>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                     </div>
                     <div>
                         <h6 class="text-uppercase text-muted small mb-1" style="color: #A0A5B5 !important;">Productos en Catálogo</h6>
-                        <h2 class="display-6 fw-bold mb-0">0</h2>
+                        <h2 class="display-6 fw-bold mb-0">{{ $totalProductos }}</h2>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                     </div>
                     <div>
                         <h6 class="text-uppercase text-muted small mb-1" style="color: #A0A5B5 !important;">Pedidos Realizados</h6>
-                        <h2 class="display-6 fw-bold mb-0">0</h2>
+                        <h2 class="display-6 fw-bold mb-0">{{ $totalPedidos }}</h2>
                     </div>
                 </div>
             </div>
@@ -74,24 +74,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="px-4 fw-bold" style="color: #C19A6B;">2</td>
-                            <td>Rodrigo</td>
-                            <td>rodri@gmail.com</td>
-                            <td class="text-center">
-                                <span class="badge bg-primary text-uppercase px-3 py-1.5">Cliente</span>
-                            </td>
-                            <td class="text-end px-4 text-muted">13/06/2026</td>
-                        </tr>
-                        <tr>
-                            <td class="px-4 fw-bold" style="color: #C19A6B;">1</td>
-                            <td>Administrador General</td>
-                            <td>admin@imperial.com</td>
-                            <td class="text-center">
-                                <span class="badge text-uppercase px-3 py-1.5" style="background-color: #C19A6B; color: #1A2238; font-weight: bold;">Admin</span>
-                            </td>
-                            <td class="text-end px-4 text-muted">12/06/2026</td>
-                        </tr>
+                        @forelse($usuariosRecientes as $usuario)
+                            <tr>
+                                <td class="px-4 fw-bold" style="color: #C19A6B;">{{ $usuario->id }}</td>
+                                <td>{{ $usuario->nombre }}</td>
+                                <td>{{ $usuario->email }}</td>
+                                <td class="text-center">
+                                    @if($usuario->rol && $usuario->rol->nombre === 'admin')
+                                        <span class="badge text-uppercase px-3 py-1.5" style="background-color: #C19A6B; color: #1A2238; font-weight: bold;">Admin</span>
+                                    @else
+                                        <span class="badge bg-primary text-uppercase px-3 py-1.5">Cliente</span>
+                                    @endif
+                                </td>
+                                <td class="text-end px-4 text-muted">{{ $usuario->created_at->format('d/m/Y') }}</td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="5" class="text-center py-4 text-muted">No hay usuarios registrados recientemente.</td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
