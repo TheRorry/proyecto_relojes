@@ -5,29 +5,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Usuario;
 use App\models\Producto;
+use App\models\Contacto;
 
 class AdminController extends Controller
 {
-   public function dashboard()
+    public function dashboard()
     {
-        // 1. Contamos los registros reales de la base de datos
+        // 1. Contadores en tiempo real para las tarjetas informativas
         $totalUsuarios = Usuario::count();
         $totalProductos = Producto::count(); 
-        $totalPedidos = 0; // Si no tenés tabla pedidos aún, lo dejamos en 0 por ahora
+        $totalPedidos = 0; // Se queda en 0 fijo por ahora hasta armar el módulo de ventas
+        
+        // 🔹 CONTROL DE CONSULTAS:
+        $totalConsultas = 0; // 👈 Línea temporal (Borrala cuando crees la tabla)
+        // $totalConsultas = Contacto::count(); // 👈 Descomentá esta cuando la tabla exista
 
-        // 2. Traemos los últimos usuarios registrados con su rol vinculado
-        // Usamos 'with' para que no haga consultas de más (Eager Loading)
+
+        // 2. Trae los últimos 5 usuarios registrados junto con su rol asignado
         $usuariosRecientes = Usuario::with('rol')
                                     ->orderBy('id', 'desc')
-                                    ->take(5) // Trae solo los últimos 5
+                                    ->take(5)
                                     ->get();
 
-        // 3. Le pasamos todos estos datos vivos a la vista mediante compact()
+
+        // 3. Trae los últimos 5 mensajes que dejaron los clientes en la web
+        // 🔹 CONTROL DE BANDEJA DE ENTRADA:
+        $consultasRecientes = collect(); // 👈 Línea temporal (Borrala cuando crees la tabla)
+        // $consultasRecientes = Contacto::orderBy('id', 'desc')->take(5)->get(); // 👈 Descomentá esta cuando la tabla exista
+
+
+        // 4. Envía de forma segura el paquete de datos hacia la vista de Blade
         return view('backend.admin.dashboard', compact(
             'totalUsuarios', 
             'totalProductos', 
             'totalPedidos', 
-            'usuariosRecientes'
+            'totalConsultas',
+            'usuariosRecientes',
+            'consultasRecientes'
         ));
     }
 }

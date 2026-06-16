@@ -1,118 +1,170 @@
-@extends('plantilla')
+@extends('plantilla') {{-- 💡 Asegurate de que apunte a tu plantilla base --}}
 
-@section('titulo', 'Panel de Administración - Imperial Relojería')
+@section('titulo', 'Panel de Control - Imperial Relojería')
 
 @section('contenido')
-<div class="container my-5">
-    <div class="d-flex justify-content-between align-items-center mb-4 pb-3" style="border-bottom: 3px solid #C19A6B;">
-        <h2 class="text-uppercase fw-bold m-0" style="color: #1A2238; letter-spacing: 1px;">
-            <i class="bi bi-speedometer2 me-2"></i>Panel de Administración
-        </h2>
-        <span class="badge fs-6 px-3 py-2 text-uppercase" style="background-color: #C19A6B; color: #1A2238; fw-bold">Admin</span>
+<div class="container-fluid py-4">
+    
+    <div class="d-flex justify-content-between align-items-center mb-4">
+    <div>
+        <h2 class="fw-bold text-dark m-0" style="font-family: 'Playfair Display', serif;">Panel de Administración</h2>
+        <p class="text-muted small m-0">Bienvenido al centro de control de Imperial Relojería.</p>
     </div>
+    <a href="{{ url('admin/productos') }}" class="btn fw-semibold px-4 text-white rounded-3 shadow-sm" style="background-color: #1A2536; border: 1px solid #1A2536;">
+        <i class="bi bi-gear me-2"></i>Gestionar Productos
+    </a>
+</div>
 
-    <div class="row g-4 mb-5">
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-white" style="background-color: #1A2238;">
-                <div class="card-body d-flex align-items-center p-4">
-                    <div class="rounded-circle p-3 me-3" style="background-color: rgba(193, 154, 107, 0.2);">
-                        <i class="bi bi-people-fill fs-1" style="color: #C19A6B;"></i>
-                    </div>
+    <!-- 📊 TARJETAS DE ESTADÍSTICAS (KPIs) -->
+    <div class="row g-3 mb-5">
+        <!-- Tarjeta Productos -->
+        <div class="col-12 col-sm-6 col-xl-3">
+    <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
+        <div class="d-flex align-items-center justify-content-between">
+            <div>
+                <h6 class="text-muted small text-uppercase mb-1 fw-bold">Piezas en Catálogo</h6>
+                <h3 class="m-0 fw-bold text-dark">{{ $totalProductos }}</h3>
+            </div>
+            <div class="rounded-3 p-3 bg-dark-subtle text-dark">
+                <i class="bi bi-watch fs-3"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <!-- Tarjeta Usuarios -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
+                <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h6 class="text-uppercase text-muted small mb-1" style="color: #A0A5B5 !important;">Usuarios Registrados</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $totalUsuarios }}</h2>
+                        <h6 class="text-muted small text-uppercase mb-1 fw-bold">Usuarios Totales</h6>
+                        <h3 class="m-0 fw-bold text-dark">{{ $totalUsuarios }}</h3>
+                    </div>
+                    <div class="rounded-3 p-3 bg-primary-subtle text-primary">
+                        <i class="bi bi-people fs-3"></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-white" style="background-color: #1A2238;">
-                <div class="card-body d-flex align-items-center p-4">
-                    <div class="rounded-circle p-3 me-3" style="background-color: rgba(193, 154, 107, 0.2);">
-                        <i class="bi bi-watch fs-1" style="color: #C19A6B;"></i>
-                    </div>
+        <!-- Tarjeta Consultas -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white">
+                <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h6 class="text-uppercase text-muted small mb-1" style="color: #A0A5B5 !important;">Productos en Catálogo</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $totalProductos }}</h2>
+                        <h6 class="text-muted small text-uppercase mb-1 fw-bold">Consultas Web</h6>
+                        <h3 class="m-0 fw-bold text-dark">{{ $totalConsultas }}</h3>
+                    </div>
+                    <div class="rounded-3 p-3 bg-warning-subtle text-warning-emphasis">
+                        <i class="bi bi-envelope-paper fs-3"></i>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card h-100 border-0 shadow-sm text-white" style="background-color: #1A2238;">
-                <div class="card-body d-flex align-items-center p-4">
-                    <div class="rounded-circle p-3 me-3" style="background-color: rgba(193, 154, 107, 0.2);">
-                        <i class="bi bi-cart-check-fill fs-1" style="color: #C19A6B;"></i>
-                    </div>
+        <!-- Tarjeta Ventas -->
+        <div class="col-12 col-sm-6 col-xl-3">
+            <div class="card border-0 shadow-sm rounded-4 p-3 bg-white" style="border-left: 4px solid #D4AF37 !important;">
+                <div class="d-flex align-items-center justify-content-between">
                     <div>
-                        <h6 class="text-uppercase text-muted small mb-1" style="color: #A0A5B5 !important;">Pedidos Realizados</h6>
-                        <h2 class="display-6 fw-bold mb-0">{{ $totalPedidos }}</h2>
+                        <h6 class="text-muted small text-uppercase mb-1 fw-bold">Ventas Realizadas</h6>
+                        <h3 class="m-0 fw-bold text-dark">{{ $totalPedidos }}</h3>
+                    </div>
+                    <div class="rounded-3 p-3 bg-success-subtle text-success">
+                        <i class="bi bi-currency-dollar fs-3"></i>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="card border-0 shadow-sm mb-5" style="background-color: #1A2238;">
-        <div class="card-header text-white p-3" style="background-color: #111726; border-bottom: 2px solid #C19A6B;">
-            <h5 class="mb-0 text-uppercase" style="color: #C19A6B; letter-spacing: 0.5px;">
-                <i class="bi bi-list-stars me-2"></i>Usuarios Registrados recientemente
-            </h5>
-        </div>
-        <div class="card-body p-0">
-            <div class="table-responsive">
-                <table class="table table-dark table-hover align-middle mb-0" style="background-color: #1A2238;">
-                    <thead class="table-light text-uppercase small">
-                        <tr>
-                            <th class="py-3 px-4" style="background-color: #efefeF; color: #1A2238;">#</th>
-                            <th class="py-3" style="background-color: #efefeF; color: #1A2238;">Nombre</th>
-                            <th class="py-3" style="background-color: #efefeF; color: #1A2238;">Email</th>
-                            <th class="py-3 text-center" style="background-color: #efefeF; color: #1A2238;">Rol</th>
-                            <th class="py-3 text-end px-4" style="background-color: #efefeF; color: #1A2238;">Registro</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @forelse($usuariosRecientes as $usuario)
-                            <tr>
-                                <td class="px-4 fw-bold" style="color: #C19A6B;">{{ $usuario->id }}</td>
-                                <td>{{ $usuario->nombre }}</td>
-                                <td>{{ $usuario->email }}</td>
-                                <td class="text-center">
-                                    @if($usuario->rol && $usuario->rol->nombre === 'admin')
-                                        <span class="badge text-uppercase px-3 py-1.5" style="background-color: #C19A6B; color: #1A2238; font-weight: bold;">Admin</span>
-                                    @else
-                                        <span class="badge bg-primary text-uppercase px-3 py-1.5">Cliente</span>
-                                    @endif
-                                </td>
-                                <td class="text-end px-4 text-muted">{{ $usuario->created_at->format('d/m/Y') }}</td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="text-center py-4 text-muted">No hay usuarios registrados recientemente.</td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
+    <!-- 👥 SECCIÓN DE TABLAS: USUARIOS Y CONSULTAS -->
+    <div class="row g-4">
+        
+        <!-- 1. TABLA: ÚLTIMOS USUARIOS REGISTRADOS -->
+        <div class="col-12 col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
+                <div class="card-header bg-transparent border-0 pt-4 px-4 d-flex align-items-center justify-content-between">
+                    <h5 class="fw-bold m-0 text-dark" style="font-family: 'Playfair Display', serif;">Usuarios Recientes</h5>
+                    <span class="badge bg-light text-dark border">Últimos 5</span>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle m-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Nombre / Email</th>
+                                    <th class="text-center">Rol</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($usuariosRecientes as $user)
+                                    <tr>
+                                        <td>
+                                            <span class="fw-semibold text-dark d-block text-capitalize">{{ $user->nombre }}</span>
+                                            <small class="text-muted">{{ $user->email }}</small>
+                                        </td>
+                                        <td class="text-center">
+                                            @if($user->rol && $user->rol->nombre == 'admin')
+                                                <span class="badge bg-danger-subtle text-danger px-2.5 py-1.5 rounded-pill fw-semibold text-uppercase" style="font-size: 0.7rem;">Admin</span>
+                                            @else
+                                                <span class="badge bg-secondary-subtle text-secondary-emphasis px-2.5 py-1.5 rounded-pill fw-semibold text-uppercase" style="font-size: 0.7rem;">Cliente</span>
+                                            @endif
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="2" class="text-center py-4 text-muted">No hay usuarios registrados.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
+
+        <!-- ✉️ 2. TABLA: CONSULTAS DE CONTACTO -->
+        <div class="col-12 col-lg-6">
+            <div class="card border-0 shadow-sm rounded-4 h-100 bg-white">
+                <div class="card-header bg-transparent border-0 pt-4 px-4 d-flex align-items-center justify-content-between">
+                    <h5 class="fw-bold m-0 text-dark" style="font-family: 'Playfair Display', serif;">Bandeja de Contactos</h5>
+                    <span class="badge bg-warning-subtle text-warning-emphasis">Mensajes</span>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle m-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th>Remitente</th>
+                                    <th>Mensaje</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($consultasRecientes as $consulta)
+                                    <tr>
+                                        <td>
+                                            <span class="fw-semibold text-dark d-block text-capitalize">{{ $consulta->nombre }}</span>
+                                            <small class="text-muted d-block">{{ $consulta->email }}</small>
+                                        </td>
+                                        <td>
+                                            <span class="fw-medium text-dark d-block text-truncate" style="max-width: 200px;">{{ $consulta->asunto ?? 'Sin Asunto' }}</span>
+                                            <small class="text-muted d-block text-truncate" style="max-width: 250px;">{{ $consulta->mensaje }}</small>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="2" class="text-center py-4 text-muted">No se recibieron consultas todavía.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
-    <div class="card border-0 shadow-sm" style="background-color: #ffffff;">
-        <div class="card-header bg-white p-3" style="border-bottom: 1px solid #EFE7DA;">
-            <h5 class="mb-0 text-uppercase fw-bold" style="color: #1A2238;">
-                <i class="bi bi-lightning-fill me-2" style="color: #C19A6B;"></i>Accesos Rápidos
-            </h5>
-        </div>
-        <div class="card-body d-flex gap-2 flex-wrap">
-            <a href="{{ url('/admin/productos') }}" class="btn btn-outline-dark px-4 py-2" style="border-color: #1A2238; color: #1A2238;">
-                <i class="bi bi-box-seam me-2"></i>Gestionar Productos
-            </a>
-            <a href="{{ url('/') }}" class="btn btn-dark px-4 py-2" style="background-color: #1A2238; border-color: #1A2238; color: #ffffff;">
-                <i class="bi bi-house-door me-2"></i>Ir al Inicio
-            </a>
-        </div>
-    </div>
 </div>
 @endsection
