@@ -13,7 +13,7 @@ class ProductoController extends Controller
     public function index()
     {
         // 1. Traemos todos los productos (relojes) de la base de datos
-        $productos = Producto::all(); 
+        $productos = Producto::where('activo', 1)->get();
 
         // 2. Retornamos la vista del catálogo pasándole la variable $productos
         // (Asegurate de que tu archivo blade se llame 'catalogo.blade.php' o cambialo acá)
@@ -89,8 +89,14 @@ class ProductoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Producto $producto)
-    {
-        //
-    }
+    public function destroy($id)
+{
+    // Buscamos el producto
+    $producto = Producto::find($id);
+
+    // En lugar de $producto->delete(), hacemos el update:
+    $producto->update(['activo' => false]);
+
+    return redirect()->route('admin.productos.index')->with('success', 'Producto dado de baja correctamente.');
+}
 }
