@@ -4,7 +4,7 @@
 <div class="py-5 text-white">
     <div class="mb-5">
         <h1 class="hansip-font text-start" style="font-size: 2.5rem;">
-            TU <span class="text-magenta">CARRITO</span>
+            <span style="color: #D4AF37;">CARRITO</span>
         </h1>
         <p class="text-secondary small m-0 text-uppercase" style="letter-spacing: 2px;">
             Revisión de piezas seleccionadas para su adquisición
@@ -13,14 +13,25 @@
 
     {{-- 🛒 ESCENARIO 1: El carrito no existe o no tiene productos --}}
     @if(!$carrito || $carrito->detalles->isEmpty())
-        <div class="text-center py-5 border border-secondary rounded-3" style="background: #0b0c10;">
-            <i class="bi bi-cart-x text-secondary" style="font-size: 4rem;"></i>
-            <h3 class="hansip-font mt-3">Tu cofre está vacío</h3>
-            <p class="text-muted">Explorá la Imperial Collection para añadir piezas exclusivas.</p>
-            <a href="{{ route('catalogo.index') }}" class="btn-stanley-legend px-5 py-3 btn-glitch mt-3">
-                VOLVER AL CATÁLOGO
-            </a>
+        <div class="row justify-content-center py-5">
+    <div class="col-md-6 text-center p-5 rounded-4 border" style="background: #1A2536; border-color: #333 !important;">
+        {{-- Icono más grande y elegante --}}
+        <div class="mb-4">
+            <i class="bi bi-bag-x" style="font-size: 5rem; color: #D4AF37;"></i>
         </div>
+        
+        <h2 class="hansip-font text-white mb-3" style="letter-spacing: 1px;">Tu Carrito esta vacio</h2>
+        <p class="text-secondary mb-4" style="font-size: 1.1rem;">
+            Aún no has seleccionado ninguna pieza exclusiva de nuestra colección.
+        </p>
+        
+        <a href="{{ route('catalogo.index') }}" 
+           class="btn px-5 py-3 rounded-0 text-uppercase fw-bold" 
+           style="background-color: #D4AF37; color: #0b0c10; transition: 0.3s;">
+            Explorar Colección
+        </a>
+    </div>
+</div>
     @else
         {{-- 💳 ESCENARIO 2: El carrito tiene productos --}}
         <div class="row g-4">

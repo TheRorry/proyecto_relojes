@@ -8,12 +8,12 @@
 
         <div class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3" style="border-color: #D4AF37 !important;">
             @if(session('success'))
-    <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4 rounded-3 d-flex align-items-center" role="alert">
-        <i class="bi bi-check-circle-fill me-2 fs-5"></i>
-        <div>{{ session('success') }}</div>
-        <button type="button" class="btn-close" data-backdrop="false" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-@endif
+                <div class="alert alert-success alert-dismissible fade show border-0 shadow-sm mb-4 rounded-3 d-flex align-items-center" role="alert">
+                    <i class="bi bi-check-circle-fill me-2 fs-5"></i>
+                    <div>{{ session('success') }}</div>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            @endif
             <div>
                 <h1 class="h2 fw-bold" style="color: #1A2536; font-family: 'Playfair Display', serif;">Gestión de Productos</h1>
                 <p class="text-muted small m-0">Lista total de piezas y relojes disponibles en la tienda.</p>
@@ -43,9 +43,14 @@
                                     
                                     <td>
                                         <div class="d-flex align-items-center gap-3">
-                                            <div class="rounded-3 d-flex align-items-center justify-content-center bg-light border" style="width: 45px; height: 45px;">
-                                                <i class="bi bi-watch fs-4 text-secondary"></i>
+                                            <div class="rounded-3 d-flex align-items-center justify-content-center bg-light border overflow-hidden" style="width: 50px; height: 50px;">
+                                                @if($producto->url_imagen)
+                                                    <img src="{{ asset($producto->url_imagen) }}" alt="{{ $producto->nombre }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                                @else
+                                                    <i class="bi bi-watch fs-4 text-secondary"></i>
+                                                @endif
                                             </div>
+                                            
                                             <div>
                                                 <span class="fw-semibold d-block text-dark text-capitalize">{{ $producto->nombre }}</span>
                                                 <small class="text-muted d-block" style="font-size: 0.75rem;">{{ Str::limit($producto->descripcion, 40) }}</small>
@@ -107,16 +112,8 @@
 </div>
 
 <style>
-    /* Estilos sutiles para pulir la tabla */
-    .table th {
-        font-weight: 600;
-        letter-spacing: 0.5px;
-    }
-    .table-hover tbody tr:hover {
-        background-color: rgba(26, 37, 54, 0.02) !important;
-    }
-    .badge {
-        font-size: 0.85rem;
-    }
+    .table th { font-weight: 600; letter-spacing: 0.5px; }
+    .table-hover tbody tr:hover { background-color: rgba(26, 37, 54, 0.02) !important; }
+    .badge { font-size: 0.85rem; }
 </style>
 @endsection

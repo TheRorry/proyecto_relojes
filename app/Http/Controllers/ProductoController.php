@@ -32,9 +32,35 @@ class ProductoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Acá irá tu lógica para guardar los relojes nuevos y mover las fotos a img/productos
+{
+    // Validación
+    $request->validate([
+        'nombre' => 'required',
+        'precio' => 'required',
+        'stock' => 'required',
+        'url_imagen' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
+    ]);
+
+    // Preparamos los datos sin la imagen todavía
+    $datos = $request->except('url_imagen');
+
+    // Procesamos la imagen
+    if ($request->hasFile('url_imagen')) {
+        $file = $request->file('url_imagen');
+        $nombreImagen = time() . '_' . $file->getClientOriginalName();
+        
+        // Mover a public/img/productos
+        $file->move(public_path('img/productos'), $nombreImagen);
+        
+        // Asignamos la ruta relativa que se guardará en la BD
+        $datos['url_imagen'] = 'img/productos/' . $nombreImagen;
     }
+
+    // Crear el producto
+    \App\Models\Producto::create($datos);
+
+    return redirect()->route('admin.productos.index')->with('success', 'Reloj agregado.');
+}
 
     /**
      * Display the specified resource.
