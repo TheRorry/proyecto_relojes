@@ -16,7 +16,6 @@ class ProductoController extends Controller
         $productos = Producto::where('activo', 1)->get();
 
         // 2. Retornamos la vista del catálogo pasándole la variable $productos
-        // (Asegurate de que tu archivo blade se llame 'catalogo.blade.php' o cambialo acá)
         return view('catalogo', compact('productos'));
     }
 
@@ -41,18 +40,17 @@ class ProductoController extends Controller
         'url_imagen' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
     ]);
 
-    // Preparamos los datos sin la imagen todavía
+ 
     $datos = $request->except('url_imagen');
 
-    // Procesamos la imagen
+   
     if ($request->hasFile('url_imagen')) {
         $file = $request->file('url_imagen');
         $nombreImagen = time() . '_' . $file->getClientOriginalName();
         
-        // Mover a public/img/productos
+  
         $file->move(public_path('img/productos'), $nombreImagen);
         
-        // Asignamos la ruta relativa que se guardará en la BD
         $datos['url_imagen'] = 'img/productos/' . $nombreImagen;
     }
 

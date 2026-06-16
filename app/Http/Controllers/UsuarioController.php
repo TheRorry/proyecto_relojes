@@ -33,7 +33,7 @@ class UsuarioController extends Controller
         $request->validate([
             'nombre' => 'required|string|max:100',
             'email' => 'required|email|unique:usuarios',
-            'password' => 'required|min:8|confirmed', // busca campo password_confirmation
+            'password' => 'required|min:8|confirmed', 
             'rol_id' => 'required|exists:roles,id',
     ]);
     Usuario::create($request->only(['nombre', 'email', 'password', 'rol_id']));

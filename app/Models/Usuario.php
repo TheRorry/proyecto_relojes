@@ -21,9 +21,8 @@ class Usuario extends Authenticatable {
         return [
             'password' => 'hashed', // Hashea automáticamente al asignar 🎉
         ];
-    } // 2. CORRECCIÓN: Falta esta llave de cierre del método casts
+    }
 
-    // Relación: un Usuario pertenece a un Rol → se usa como $usuario->rol
     public function rol() {
         return $this->belongsTo(Rol::class, 'rol_id');
     }

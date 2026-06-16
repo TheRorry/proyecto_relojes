@@ -10,9 +10,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CarritoController extends Controller
 {
-    /**
-     * PASO 2: obtenerCarrito() usa firstOrCreate con estado='carrito'
-     */
     private function obtenerCarrito()
     {
         return VentaCabecera::firstOrCreate(

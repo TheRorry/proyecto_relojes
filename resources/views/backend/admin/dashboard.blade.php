@@ -54,7 +54,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <h6 class="text-muted small text-uppercase mb-1 fw-bold">Ventas Realizadas</h6>
-                        <h3 class="m-0 fw-bold text-dark">{{ $totalPedidos }}</h3>
+                        <h3 class="m-0 fw-bold text-dark">{{ $totalVentas }}</h3>
                     </div>
                     <div class="rounded-3 p-3 bg-success-subtle text-success"><i class="bi bi-currency-dollar fs-3"></i></div>
                 </div>

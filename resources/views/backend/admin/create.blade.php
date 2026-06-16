@@ -19,7 +19,7 @@
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body p-4">
                 
-                {{-- AQUÍ ESTÁ EL CAMBIO: Se agregó enctype="multipart/form-data" --}}
+            
                 <form action="{{ url('admin/productos') }}" method="POST" enctype="multipart/form-data">
                     @csrf
     

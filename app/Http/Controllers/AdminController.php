@@ -12,21 +12,22 @@ class AdminController extends Controller
 {
     public function dashboard()
     {
-        // 1. Estadísticas generales
+
         $totalUsuarios = Usuario::count();
         $totalProductos = Producto::count();
         $totalPedidos = VentaCabecera::where('estado', 'comprado')->count();
         $totalConsultas = Contacto::count();
 
-        // 2. Datos para tablas
+
         $usuariosRecientes = Usuario::latest()->take(5)->get();
         $ventasRecientes = VentaCabecera::with('usuario')->latest()->take(5)->get();
         
-        // Esta es la variable que causaba el error
+
         $totalConsultas = Contacto::count();
-    
-        // AQUÍ ESTÁ LA CLAVE: Debes definir la variable que usas en la vista
+
         $consultasRecientes = Contacto::latest()->take(5)->get();
+
+        $totalVentas = \App\Models\VentaCabecera::count();
 
         return view('backend.admin.dashboard', compact(
         'totalUsuarios', 
@@ -34,8 +35,9 @@ class AdminController extends Controller
         'totalPedidos', 
         'totalConsultas', 
         'usuariosRecientes', 
-        'consultasRecientes', // Asegúrate de incluirla aquí
-        'ventasRecientes'
+        'consultasRecientes',
+        'ventasRecientes',
+        'totalVentas' 
         ));
     }
 }
