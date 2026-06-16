@@ -11,7 +11,7 @@
                 <div class="card-body p-4 ">
                     <p class="text-white text-center mb-4">Completá el formulario para crear tu nueva cuenta.</p>
                     
-                    <form action="{{ route('consultas.enviar') }}" method="POST">
+                    <form action="{{ url('/registro') }}" method="POST">
                         @csrf 
                         
                         <div class="mb-3 text-white">
@@ -22,11 +22,6 @@
                         <div class="mb-3 text-white">
                             <label for="email" class="form-label fw-bold">Correo Electrónico</label>
                             <input type="email" class="form-control" id="email" name="email" placeholder="nombre@ejemplo.com" required>
-                        </div>
-
-                        <div class="mb-3 text-white">
-                            <label for="email_confirmation" class="form-label fw-bold">Correo Electrónico (De nuevo)</label>
-                            <input type="email" class="form-control" id="email_confirmation" name="email_confirmation" placeholder="nombre@ejemplo.com" required>
                         </div>
                         
                         <div class="mb-3 text-white">

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Usuario; // 1. CORREGIDO: Importamos tu modelo 'Usuario', no 'User'
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth; 
 
@@ -22,21 +22,23 @@ class AuthController extends Controller
     {
         // Validación (Asegúrate de que coincida con los campos de tu formulario)
         $data = $request->validate([
-            'nombre'   => 'required|string|max:255', // Cambiado a 'nombre' si así viene en tu formulario
-            'email'    => 'required|string|email|max:255|unique:usuarios', // Apunta a tu tabla 'usuarios'
-            'password' => 'required|string|min:8|confirmed',
+            'nombre_usuario'   => 'nullable|string|max:255', // Cambiado a 'nombre' si así viene en tu formulario
+            'email'            => 'required|string|email|max:255|unique:usuarios', // Apunta a tu tabla 'usuarios'
+            'nombre'           => 'required|string|max:255',
+            'apellido'         => 'nullable|string|max:255',
+            'contrasena'       => 'required|string|min:4',
         ]);
 
         // 2. CORREGIDO: Creamos usando 'Usuario' y mapeamos a tus columnas reales de la BD
         $user = Usuario::create([
-            'nombre'   => $data['nombre'],
-            'email'    => $data['email'],
-            'password' => $data['password'], // Sin Hash::make() porque tu modelo ya lo hace solo en casts()
-            'rol_id'   => 2, // 👈 CORREGIDO: La columna es 'rol_id', no 'role'
+        'nombre'   => $data['nombre'],      // Guarda el nombre (ej: "Rodrigo")
+        'email'    => $data['email'],       // Guarda el email
+        'password' => \Illuminate\Support\Facades\Hash::make($data['contrasena']), // Encriptado manual seguro
+        'rol_id'   => 2,                    // Cliente por defecto
         ]);
 
         // Loguear al usuario automáticamente tras registrarse
-        Auth::login($user);
+        auth()->login($user);
 
         // Redireccionar a su sección
         return redirect('/cliente');

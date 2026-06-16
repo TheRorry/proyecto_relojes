@@ -6,6 +6,8 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
 
+use App\Http\Controllers\Admin\ProductoController as AdminProductoController;
+
 Route::get('/', function () {
     return view('principal');
 });
@@ -43,11 +45,35 @@ return view('terminos_y_usos');
 
 Route::get('/registro', [AuthController::class, 'formularioRegistro']);
 
-Route::get('/login', [AuthController::class, 'formularioLogin']); 
+Route::get('/login', [AuthController::class, 'formularioLogin']);
+
 Route::post('/login', [AuthController::class, 'autenticar']);
 
 Route::middleware(['auth','rol:admin'])->group(function(){
-    Route::get('/admin', [AdminController::class, 'dashboard']);
+Route::get('/admin', [AdminController::class, 'dashboard']);
 });
 
 Route::post('/logout', [AuthController::class, 'logout']);
+
+Route::get('/registro', [AuthController::class, 'formularioRegistro']); // Muestra el formulario
+Route::post('/registro', [AuthController::class, 'registrar']);
+
+// 👤 ZONA PROTEGIDA: CLIENTES
+Route::middleware(['auth'])->group(function () {
+    
+    // Tu ruta limpia para el dashboard del cliente
+    Route::get('/cliente', function () {
+        return view('backend.usuarios.cliente');
+    });
+    
+});
+
+// 👑 ZONA PROTEGIDA: ADMINISTRADORES
+Route::middleware(['auth', 'rol:admin'])->group(function () {
+    
+    Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
+    
+    // ⌚ Cambiamos ProductoController::class por tu nuevo alias:
+    Route::resource('admin/productos', AdminProductoController::class);
+    
+});
