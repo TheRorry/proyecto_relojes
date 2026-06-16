@@ -21,8 +21,14 @@
         <div class="card border-0 shadow-sm rounded-4">
             <div class="card-body p-4">
                 
-                <form action="{{ url('admin/productos') }}" method="POST">
-                    @csrf {{-- 🔐 Token obligatorio de Laravel para formularios --}}
+                <form action="{{ url('admin/productos') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+    
+    <!-- Tu input de tipo file tiene que tener un name, por ejemplo: "imagen" -->
+    <div class="mb-3">
+        <label for="imagen" class="form-label">Imagen del Reloj</label>
+        <input type="file" name="imagen" id="imagen" class="form-control">
+    </div>
 
                     <!-- Nombre del Producto -->
                     <div class="mb-3">

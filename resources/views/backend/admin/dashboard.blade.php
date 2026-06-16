@@ -165,6 +165,56 @@
         </div>
 
     </div>
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="card border-0 shadow-sm rounded-4 bg-white">
+                <div class="card-header bg-transparent border-0 pt-4 px-4 d-flex align-items-center justify-content-between">
+                    <h5 class="fw-bold m-0 text-dark" style="font-family: 'Playfair Display', serif;">Últimas Ventas Realizadas</h5>
+                    <span class="badge bg-success-subtle text-success border border-success-subtle">Módulo Comercial</span>
+                </div>
+                <div class="card-body px-4 pb-4">
+                    <div class="table-responsive">
+                        <table class="table table-hover align-middle m-0">
+                            <thead class="table-light">
+                                <tr>
+                                    <th class="py-3">Nro. Pedido</th>
+                                    <th class="py-3">Cliente / Email</th>
+                                    <th class="py-3">Fecha de Compra</th>
+                                    <th class="py-3">Monto Total</th>
+                                    <th class="text-center py-3">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($ventasRecientes as $venta)
+                                    <tr>
+                                        <td class="fw-bold text-muted">#{{ $venta->id }}</td>
+                                        <td>
+                                            <span class="fw-semibold text-dark d-block text-capitalize">{{ $venta->usuario->nombre ?? 'Usuario Eliminado' }}</span>
+                                            <small class="text-muted">{{ $venta->usuario->email ?? '-' }}</small>
+                                        </td>
+                                        <td>{{ $venta->created_at->format('d/m/Y H:i') }} hs</td>
+                                        <td class="fw-bold text-dark">${{ number_format($venta->total, 2, ',', '.') }}</td>
+                                        <td class="text-center">
+                                            <span class="badge bg-success-subtle text-success px-2.5 py-1.5 rounded-pill fw-medium text-uppercase" style="font-size: 0.7rem;">
+                                                {{ $venta->estado }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="5" class="text-center py-4 text-muted">
+                                            <i class="bi bi-cash-coin fs-2 d-block mb-2 text-opacity-50"></i>
+                                            Aún no se han procesado compras en la tienda.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 @endsection

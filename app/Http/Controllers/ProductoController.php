@@ -8,11 +8,16 @@ use Illuminate\Http\Request;
 class ProductoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Muestra el catálogo de relojes a los usuarios.
      */
     public function index()
     {
-        //
+        // 1. Traemos todos los productos (relojes) de la base de datos
+        $productos = Producto::all(); 
+
+        // 2. Retornamos la vista del catálogo pasándole la variable $productos
+        // (Asegurate de que tu archivo blade se llame 'catalogo.blade.php' o cambialo acá)
+        return view('catalogo', compact('productos'));
     }
 
     /**
@@ -20,7 +25,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        //
+        // Acá vas a retornar la vista de tu formulario de administración más adelante
     }
 
     /**
@@ -28,7 +33,7 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Acá irá tu lógica para guardar los relojes nuevos y mover las fotos a img/productos
     }
 
     /**

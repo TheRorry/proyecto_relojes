@@ -5,75 +5,82 @@ use App\Http\Controllers\ContactoController;
 use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\Admin\ProductoController as AdminProductoController;
 
+// --------------------------------------------------------------------------
+// 🌍 VISTAS PÚBLICAS GENERALES
+// --------------------------------------------------------------------------
 Route::get('/', function () {
     return view('principal');
 });
 
-Route::get('/catalogo', function () { 
-return view('catalogo'); 
-}); 
+// 🔥 CORRECCIÓN: Dejamos SOLO la ruta dinámica del catálogo conectada al ProductoController
+Route::get('/catalogo', [ProductoController::class, 'index'])->name('catalogo.index');
 
 Route::get('/comercializacion', function () { 
-return view('comercializacion'); 
-});
-
-// Muestra el formulario
-Route::get('/consultas', [ContactoController::class, 'consultas'])->name('consultas'); 
-
-// Procesa el formulario (Cambiamos /informacion por /consultas)
-Route::post('/consultas', [ContactoController::class, 'procesar'])->name('consultas.enviar'); 
-
-Route::get('/informacion', function () { 
-return view('informacion'); 
-}); 
-Route::post('/informacion', [ContactoController::class, 'procesar']);
-
-Route::get('/exito', function () {
-return view('exito');
+    return view('comercializacion'); 
 });
 
 Route::get('/quienes-somos', function () { 
-return view('quienes_somos'); 
+    return view('quienes_somos'); 
 }); 
 
 Route::get('/terminos-y-usos', function () { 
-return view('terminos_y_usos'); 
+    return view('terminos_y_usos'); 
 });
 
-Route::get('/registro', [AuthController::class, 'formularioRegistro']);
+Route::get('/informacion', function () { 
+    return view('informacion'); 
+}); 
 
-Route::get('/login', [AuthController::class, 'formularioLogin']);
-
-Route::post('/login', [AuthController::class, 'autenticar']);
-
-Route::middleware(['auth','rol:admin'])->group(function(){
-Route::get('/admin', [AdminController::class, 'dashboard']);
+Route::get('/exito', function () {
+    return view('exito');
 });
 
-Route::post('/logout', [AuthController::class, 'logout']);
+// --------------------------------------------------------------------------
+// ✉️ SECCIÓN DE CONTACTO / CONSULTAS
+// --------------------------------------------------------------------------
+Route::get('/consultas', [ContactoController::class, 'consultas'])->name('consultas'); 
+Route::post('/consultas', [ContactoController::class, 'procesar'])->name('consultas.enviar'); 
+Route::post('/informacion', [ContactoController::class, 'procesar']);
 
-Route::get('/registro', [AuthController::class, 'formularioRegistro']); // Muestra el formulario
+// --------------------------------------------------------------------------
+// 🔐 AUTENTICACIÓN (LOGIN Y REGISTRO)
+// --------------------------------------------------------------------------
+Route::get('/registro', [AuthController::class, 'formularioRegistro']); 
 Route::post('/registro', [AuthController::class, 'registrar']);
 
-// 👤 ZONA PROTEGIDA: CLIENTES
+Route::get('/login', [AuthController::class, 'formularioLogin'])->name('login');
+Route::post('/login', [AuthController::class, 'autenticar']);
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+// --------------------------------------------------------------------------
+// 👤 ZONA PROTEGIDA: CLIENTES AUTENTICADOS (Requisito Checklist)
+// --------------------------------------------------------------------------
 Route::middleware(['auth'])->group(function () {
     
-    // Tu ruta limpia para el dashboard del cliente
+    // Dashboard base del cliente
     Route::get('/cliente', function () {
         return view('backend.usuarios.cliente');
     });
     
+    // 🛒 RUTAS DEL CARRITO DE COMPRAS (Mapeado exacto según tu PDF de flujo)
+    Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index'); 
+    Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
+    Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
+    Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
+    Route::get('/compra-confirmada', [CarritoController::class, 'compraConfirmada'])->name('carrito.confirmada');
 });
 
+// --------------------------------------------------------------------------
 // 👑 ZONA PROTEGIDA: ADMINISTRADORES
+// --------------------------------------------------------------------------
 Route::middleware(['auth', 'rol:admin'])->group(function () {
     
+    Route::get('/admin', [AdminController::class, 'dashboard']);
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard']);
     
-    // ⌚ Cambiamos ProductoController::class por tu nuevo alias:
+    // CRUD de productos para el administrador
     Route::resource('admin/productos', AdminProductoController::class);
-    
 });
