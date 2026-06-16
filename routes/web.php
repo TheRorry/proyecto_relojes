@@ -44,6 +44,9 @@ Route::get('/exito', function () {
 Route::get('/consultas', [ContactoController::class, 'consultas'])->name('consultas'); 
 Route::post('/consultas', [ContactoController::class, 'procesar'])->name('consultas.enviar'); 
 Route::post('/informacion', [ContactoController::class, 'procesar']);
+// En routes/web.php
+Route::post('/consultas/enviar', [App\Http\Controllers\ContactoController::class, 'procesar'])->name('consultas.enviar');
+
 
 // --------------------------------------------------------------------------
 // 🔐 AUTENTICACIÓN (LOGIN Y REGISTRO)
