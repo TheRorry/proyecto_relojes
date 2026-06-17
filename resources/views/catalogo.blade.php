@@ -34,7 +34,8 @@
     {{-- PRUEBA DE DEPURACIÓN --}}
 <div class="bg-white text-center p-4">
     <p>Ruta en BD: {{ $producto->url_imagen }}</p>
-    <img src="{{ asset('/' . $producto->url_imagen) }}" alt="{{ $producto->nombre }}">
+    <img src="{{ Str::startsWith($producto->url_imagen, 'img/') ? asset($producto->url_imagen) : asset('img/productos/' . $producto->url_imagen) }}" 
+     alt="{{ $producto->nombre }}">
 </div>
 
 </div>

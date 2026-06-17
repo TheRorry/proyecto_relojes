@@ -33,26 +33,31 @@ class ProductoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        // Validamos que manden todo lo necesario y con los tipos de datos correctos
+{
+    // 1. Validamos todo, incluyendo la imagen
     $data = $request->validate([
         'nombre'      => 'required|string|max:255',
         'descripcion' => 'nullable|string',
         'precio'      => 'required|numeric|min:0',
         'stock'       => 'required|integer|min:0',
+        'url_imagen'  => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
     ]);
 
-    // Creamos el registro en la base de datos usando el modelo
-    Producto::create([
-        'nombre'      => $data['nombre'],
-        'descripcion' => $data['descripcion'],
-        'precio'      => $data['precio'],
-        'stock'       => $data['stock'],
-    ]);
-
-    // Redireccionamos a la tabla con un mensaje de éxito
-    return redirect('admin/productos')->with('success', 'Reloj agregado exitosamente a la colección.');
+    // 2. Procesamos la imagen si viene en el request
+    if ($request->hasFile('url_imagen')) {
+        $imagen = $request->file('url_imagen');
+        $nombreImagen = time() . '_' . $imagen->getClientOriginalName();
+        $imagen->move(public_path('img/productos'), $nombreImagen);
+        
+        // Agregamos el nombre del archivo al array de datos
+        $data['url_imagen'] = $nombreImagen;
     }
+
+    // 3. Creamos el registro incluyendo la url_imagen
+    Producto::create($data);
+
+    return redirect('admin/productos')->with('success', 'Reloj agregado exitosamente.');
+}
 
     /**
      * Display the specified resource.

@@ -45,7 +45,7 @@
                                         <div class="d-flex align-items-center gap-3">
                                             <div class="rounded-3 d-flex align-items-center justify-content-center bg-light border overflow-hidden" style="width: 50px; height: 50px;">
                                                 @if($producto->url_imagen)
-                                                    <img src="{{ asset($producto->url_imagen) }}" alt="{{ $producto->nombre }}" style="width: 100%; height: 100%; object-fit: cover;">
+                                                    <img src="{{ Str::startsWith($producto->url_imagen, 'img/') ? asset($producto->url_imagen) : asset('img/productos/' . $producto->url_imagen) }}" alt="{{ $producto->nombre }}" style="width: 100%; height: 100%; object-fit: cover;">
                                                 @else
                                                     <i class="bi bi-watch fs-4 text-secondary"></i>
                                                 @endif

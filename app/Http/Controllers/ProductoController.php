@@ -24,15 +24,12 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        // Acá vas a retornar la vista de tu formulario de administración más adelante
+        return view('backend.admin.productos.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
 {
-    // Validación
+    // 1. Validación
     $request->validate([
         'nombre' => 'required',
         'precio' => 'required',
@@ -40,25 +37,46 @@ class ProductoController extends Controller
         'url_imagen' => 'nullable|image|mimes:jpeg,png,jpg,webp|max:2048'
     ]);
 
- 
+    // 2. Preparamos los datos
     $datos = $request->except('url_imagen');
 
-   
+    if ($request->hasFile('url_imagen')) {
+    $file = $request->file('url_imagen');
+    
+    // Verificamos si es válida
+    if (!$file->isValid()) {
+        dd('El archivo no es válido o está corrupto');
+    }
+
+    $nombreImagen = time() . '_' . $file->getClientOriginalName();
+    $file->move(public_path('img/productos'), $nombreImagen);
+    $datos['url_imagen'] = $nombreImagen;
+} else {
+    dd('El request no tiene ningún archivo llamado url_imagen');
+}
+
+    // 3. Procesamos la imagen
     if ($request->hasFile('url_imagen')) {
         $file = $request->file('url_imagen');
         $nombreImagen = time() . '_' . $file->getClientOriginalName();
         
-  
+        // Movemos el archivo
         $file->move(public_path('img/productos'), $nombreImagen);
         
-        $datos['url_imagen'] = 'img/productos/' . $nombreImagen;
+        // Guardamos la ruta en el array de datos
+        // NOTA: Asegurate que 'url_imagen' sea el nombre exacto de la columna en tu tabla productos
+        $datos['url_imagen'] = $nombreImagen; 
     }
 
-    // Crear el producto
-    \App\Models\Producto::create($datos);
+    // 4. ¡ESTO ES LO QUE TE FALTABA!
+    // Guardamos en la base de datos
+    Producto::create($datos);
 
-    return redirect()->route('admin.productos.index')->with('success', 'Reloj agregado.');
+    // 5. Redireccionamos con éxito
+    return redirect()->route('admin.productos.index')->with('success', 'Reloj creado correctamente');
 }
+
+    
 
     /**
      * Display the specified resource.

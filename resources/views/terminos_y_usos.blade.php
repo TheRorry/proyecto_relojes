@@ -14,7 +14,7 @@
 
         <section class="mb-5">
             <h3 class="texto-dorado"><i class="bi bi-credit-card me-2"></i> 2. Condiciones de Venta</h3>
-            <p>Todos los precios están expresados en pesos argentinos e incluyen IVA. Nos reservamos el derecho de modificar los precios sin previo aviso. La confirmación de compra está sujeta a la validación del medio de pago y disponibilidad de stock.</p>
+            <p>Todos los precios están expresados en dolares americanos (USD). Nos reservamos el derecho de modificar los precios sin previo aviso. La confirmación de compra está sujeta a la validación del medio de pago y disponibilidad de stock.</p>
         </section>
 
         <section class="mb-5">
