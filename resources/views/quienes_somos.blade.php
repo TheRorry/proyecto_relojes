@@ -32,31 +32,35 @@
             <h3 class="text-center mb-4" style="color: #1A2238;">Nuestro Equipo</h3>
             <div class="row g-4 justify-content-center">
                 
-                {{-- Integrante 1 --}}
-                <div class="col-md-5">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4">
-                        <div class="mx-auto mb-3 rounded-circle d-flex align-items-center justify-content-center" 
-                             style="width: 80px; height: 80px; background-color: #1A2238; color: #C19A6B;">
-                            <i class="bi bi-person-badge" style="font-size: 2.5rem;"></i>
-                        </div>
-                        <h4 class="mb-1">Duarte Rodrigo</h4>
-                        <p class="text-muted">Director Ejecutivo & Especialista en Alta Relojería</p>
-                    </div>
-                </div>
-
-                {{-- Integrante 2 --}}
-                <div class="col-md-5">
-                    <div class="card h-100 border-0 shadow-sm text-center p-4">
-                        <div class="mx-auto mb-3 rounded-circle d-flex align-items-center justify-content-center" 
-                             style="width: 80px; height: 80px; background-color: #1A2238; color: #C19A6B;">
-                            <i class="bi bi-person-gear" style="font-size: 2.5rem;"></i>
-                        </div>
-                        <h4 class="mb-1">Sardi Gustavo</h4>
-                        <p class="text-muted">Director de Operaciones & Curador de Colecciones</p>
-                    </div>
-                </div>
-
+    {{-- Integrante 1: Duarte Rodrigo --}}
+    <div class="col-md-5">
+        <div class="card h-100 border-0 shadow-sm text-center p-4">
+            <div class="mx-auto mb-3">
+                <img src="{{ asset('img/img_rodrigo.jpg') }}" 
+                     alt="Duarte Rodrigo" 
+                     class="rounded-circle"
+                     style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #C19A6B;">
             </div>
+            <h4 class="mb-1">Duarte Rodrigo</h4>
+            <p class="text-muted">Director Ejecutivo & Especialista en Alta Relojería</p>
+        </div>
+    </div>
+
+                {{-- Integrante 2: Sardi Gustavo --}}
+                    <div class="col-md-5">
+                        <div class="card h-100 border-0 shadow-sm text-center p-4">
+                         <div class="mx-auto mb-3">
+                <img src="{{ asset('img/img_gustavo.jpg') }}" 
+                     alt="Sardi Gustavo" 
+                     class="rounded-circle"
+                     style="width: 120px; height: 120px; object-fit: cover; border: 3px solid #C19A6B;">
+            </div>
+            <h4 class="mb-1">Sardi Gustavo</h4>
+            <p class="text-muted">Director de Operaciones & Encargado de Colecciones</p>
+        </div>
+    </div>
+
+</div>
 
             {{-- Bloques destacados originales --}}
             <div class="row mt-5 text-center">

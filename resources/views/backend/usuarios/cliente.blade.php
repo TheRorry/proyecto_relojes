@@ -7,9 +7,6 @@
 
         <div class="d-flex align-items-center justify-content-between mb-4 border-bottom pb-3" style="border-color: #D4AF37 !important;">
             <h1 class="h2 fw-bold" style="color: #1A2536; font-family: 'Playfair Display', serif;">Mi Cuenta</h1>
-            <span class="badge px-3 py-2 fs-6 rounded-pill" style="background-color: #1A2536; color: #D4AF37; border: 1px solid #D4AF37;">
-                <i class="bi bi-gem me-1"></i> Cliente Premium
-            </span>
         </div>
 
         <div class="card border-0 shadow-sm rounded-4 mb-4" style="background-color: #1A2536; color: #F8F4EC;">

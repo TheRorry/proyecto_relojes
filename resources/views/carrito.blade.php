@@ -48,52 +48,49 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($carrito->detalles as $detalle)
-                                <tr class="border-secondary">
-                                    <td>
-                                        <div class="d-flex align-items-center gap-3">
-                                            @if($detalle->producto->imagen)
-                                                <img src="{{ asset('img/productos/' . $detalle->producto->imagen) }}" 
-                                                     alt="{{ $detalle->producto->nombre }}" 
-                                                     style="width: 60px; height: 60px; object-fit: contain;" 
-                                                     class="bg-black rounded p-1">
-                                            @else
-                                                <img src="{{ asset('img/logo.png') }}" 
-                                                     alt="No image" 
-                                                     style="width: 60px; height: 60px; object-fit: contain;" 
-                                                     class="bg-black rounded p-1">
-                                            @endif
-                                            <div>
-                                                <span class="fw-bold d-block text-white">{{ $detalle->producto->nombre }}</span>
-                                                <span class="text-muted small">Ref: IR-00{{ $detalle->producto->id }}</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                    
-                                    <td class="text-center fw-bold text-magenta">
-                                        {{ $detalle->cantidad }}
-                                    </td>
-                                    
-                                    <td class="text-end">
-                                        ${{ number_format($detalle->precio_unitario, 0, ',', '.') }}
-                                    </td>
-                                    
-                                    <td class="text-end fw-bold text-white">
-                                        ${{ number_format($detalle->subtotal, 0, ',', '.') }}
-                                    </td>
-                                    
-                                    <td class="text-center">
-                                        <form action="{{ route('carrito.eliminar', $detalle->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Remover pieza">
-                                                <i class="bi bi-trash"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
+    @foreach($carrito->detalles as $detalle)
+        <tr class="border-secondary">
+            <td>
+                <span class="fw-bold d-block text-white">{{ $detalle->producto->nombre }}</span>
+                <span class="text-white small">Ref: IR-00{{ $detalle->producto->id }}</span>
+            </td>
+            
+            <td class="text-center">
+                <div class="d-flex justify-content-center align-items-center gap-2">
+                    <form action="{{ route('carrito.restar', $detalle->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-secondary btn-sm rounded-circle" style="width: 30px; height: 30px;">-</button>
+                    </form>
+                    
+                    <span class="fw-bold text-white" style="width: 20px;">{{ $detalle->cantidad }}</span>
+                    
+                    <form action="{{ route('carrito.sumar', $detalle->id) }}" method="POST">
+                        @csrf
+                        <button type="submit" class="btn btn-outline-warning btn-sm rounded-circle" style="width: 30px; height: 30px;">+</button>
+                    </form>
+                </div>
+            </td>
+            
+            <td class="text-end">
+                ${{ number_format($detalle->precio_unitario, 0, ',', '.') }}
+            </td>
+            
+            <td class="text-end fw-bold text-white">
+                ${{ number_format($detalle->subtotal, 0, ',', '.') }}
+            </td>
+            
+            <td class="text-center">
+                <form action="{{ route('carrito.eliminar', $detalle->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-circle" title="Remover pieza">
+                        <i class="bi bi-trash"></i>
+                    </button>
+                </form>
+            </td>
+        </tr>
+    @endforeach
+</tbody>
                     </table>
                 </div>
             </div>
@@ -110,9 +107,12 @@
                     <hr class="border-secondary">
                     
                     <div class="d-flex justify-content-between align-items-center mb-4">
-                        <span class="fw-bold fs-5">TOTAL ESTIMADO:</span>
-                        <span class="text-magenta fw-bold fs-4">${{ number_format($carrito->total, 0, ',', '.') }}</span>
-                    </div>
+    <span class="fw-bold fs-5">TOTAL ESTIMADO:</span>
+    
+    <span class="text-magenta fw-bold fs-4">
+        ${{ number_format($carrito->detalles->sum('subtotal'), 0, ',', '.') }}
+    </span>
+</div>
 
                     <form action="{{ route('carrito.confirmar') }}" method="POST">
                         @csrf

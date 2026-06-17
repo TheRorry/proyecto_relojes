@@ -56,7 +56,7 @@
 
                     <div class="row">
                         <div class="col-12 col-sm-6 mb-3">
-                            <label for="precio" class="form-label fw-semibold text-dark">Precio (ARS)</label>
+                            <label for="precio" class="form-label fw-semibold text-dark">Precio (USD)</label>
                             <div class="input-group">
                                 <span class="input-group-text bg-light">$</span>
                                 <input type="number" name="precio" id="precio" step="0.01" class="form-control @error('precio') is-invalid @enderror" value="{{ old('precio', $producto->precio) }}" required>

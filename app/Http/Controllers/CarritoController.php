@@ -140,5 +140,48 @@ class CarritoController extends Controller
     {
         $nuevoTotal = VentaDetalle::where('venta_id', $carritoCabecera->id)->sum('subtotal');
         $carritoCabecera->update(['total' => $nuevoTotal]);
+        $carritoCabecera->refresh();
     }
+
+    public function sumar($detalleId)
+{
+    $detalle = VentaDetalle::findOrFail($detalleId);
+    $producto = $detalle->producto;
+
+    if ($producto->stock > $detalle->cantidad) {
+        $detalle->cantidad += 1;
+        $detalle->subtotal = $detalle->cantidad * $detalle->precio_unitario;
+        $detalle->save();
+        
+        // Obtenemos la venta a través de la relación definida en el modelo VentaDetalle
+        $venta = $detalle->venta; 
+        
+        if ($venta) {
+            $this->recalcularTotal($venta);
+        }
+    }
+
+    return redirect()->back();
+}
+
+public function restar($detalleId)
+{
+    $detalle = VentaDetalle::findOrFail($detalleId);
+    $venta = $detalle->venta; // Obtenemos la venta ANTES de borrar el detalle
+
+    if ($detalle->cantidad > 1) {
+        $detalle->cantidad -= 1;
+        $detalle->subtotal = $detalle->cantidad * $detalle->precio_unitario;
+        $detalle->save();
+    } else {
+        $detalle->delete();
+    }
+
+    // Ahora $venta ya está capturado, solo validamos que exista
+    if ($venta) {
+        $this->recalcularTotal($venta);
+    }
+
+    return redirect()->back();
+}
 }

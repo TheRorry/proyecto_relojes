@@ -9,7 +9,7 @@ use App\Http\Controllers\CarritoController;
 use App\Http\Controllers\Admin\ProductoController as AdminProductoController;
 
 // --------------------------------------------------------------------------
-// 🌍 VISTAS PÚBLICAS GENERALES
+// VISTAS PÚBLICAS GENERALES
 // --------------------------------------------------------------------------
 Route::get('/', function () {
     return view('principal');
@@ -39,17 +39,16 @@ Route::get('/exito', function () {
 });
 
 // --------------------------------------------------------------------------
-// ✉️ SECCIÓN DE CONTACTO / CONSULTAS
+// SECCIÓN DE CONTACTO / CONSULTAS
 // --------------------------------------------------------------------------
 Route::get('/consultas', [ContactoController::class, 'consultas'])->name('consultas'); 
 Route::post('/consultas', [ContactoController::class, 'procesar'])->name('consultas.enviar'); 
 Route::post('/informacion', [ContactoController::class, 'procesar']);
-// En routes/web.php
 Route::post('/consultas/enviar', [App\Http\Controllers\ContactoController::class, 'procesar'])->name('consultas.enviar');
 
 
 // --------------------------------------------------------------------------
-// 🔐 AUTENTICACIÓN (LOGIN Y REGISTRO)
+// AUTENTICACIÓN (LOGIN Y REGISTRO)
 // --------------------------------------------------------------------------
 Route::get('/registro', [AuthController::class, 'formularioRegistro']); 
 Route::post('/registro', [AuthController::class, 'registrar']);
@@ -59,7 +58,7 @@ Route::post('/login', [AuthController::class, 'autenticar']);
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 // --------------------------------------------------------------------------
-// 👤 ZONA PROTEGIDA: CLIENTES AUTENTICADOS (Requisito Checklist)
+// ZONA PROTEGIDA: CLIENTES AUTENTICADOS (Requisito Checklist)
 // --------------------------------------------------------------------------
 Route::middleware(['auth'])->group(function () {
     
@@ -68,16 +67,17 @@ Route::middleware(['auth'])->group(function () {
         return view('backend.usuarios.cliente');
     });
     
-    // 🛒 RUTAS DEL CARRITO DE COMPRAS (Mapeado exacto según tu PDF de flujo)
     Route::get('/carrito', [CarritoController::class, 'index'])->name('carrito.index'); 
     Route::post('/carrito/agregar/{id}', [CarritoController::class, 'agregar'])->name('carrito.agregar');
     Route::delete('/carrito/eliminar/{id}', [CarritoController::class, 'eliminar'])->name('carrito.eliminar');
     Route::post('/carrito/confirmar', [CarritoController::class, 'confirmar'])->name('carrito.confirmar');
     Route::get('/compra-confirmada', [CarritoController::class, 'compraConfirmada'])->name('carrito.confirmada');
+    Route::post('/carrito/sumar/{detalleId}', [CarritoController::class, 'sumar'])->name('carrito.sumar');
+    Route::post('/carrito/restar/{detalleId}', [CarritoController::class, 'restar'])->name('carrito.restar');
 });
 
 // --------------------------------------------------------------------------
-// 👑 ZONA PROTEGIDA: ADMINISTRADORES
+// ADMINISTRADORES
 // --------------------------------------------------------------------------
 Route::middleware(['auth', 'rol:admin'])->group(function () {
     
