@@ -19,7 +19,7 @@ class Usuario extends Authenticatable {
 
     protected function casts(): array {
         return [
-            'password' => 'hashed', // Hashea automáticamente al asignar 🎉
+            'password' => 'hashed', // Hashea automáticamente al asignar
         ];
     }
 
